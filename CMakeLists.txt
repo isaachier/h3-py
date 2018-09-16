@@ -12,6 +12,9 @@ string(REGEX MATCH "${py_version_regex}" _ "${version_line}")
 set(version "${CMAKE_MATCH_1}")
 message(STATUS "h3core-py version: ${version}")
 
+set(CMAKE_TOOLCHAIN_FILE "${CMAKE_CURRENT_SOURCE_DIR}/cmake/toolchain.cmake"
+    CACHE FILE "Toolchain to be used for this project and subprojects")
+
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
 project(h3core-py VERSION "${version}" LANGUAGES C CXX)

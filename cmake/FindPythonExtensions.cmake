@@ -294,6 +294,7 @@ sys.stdout.write(\";\".join((
 
 execute_process(COMMAND "${PYTHON_EXECUTABLE}" -c "${_command}"
                 OUTPUT_VARIABLE _list
+                ERROR_VARIABLE _err
                 RESULT_VARIABLE _result)
 
 list(GET _list 0 _item)
@@ -327,7 +328,6 @@ function(_set_python_extension_symbol_visibility _target)
   else()
     set(_modinit_prefix "init")
   endif()
-  message("_modinit_prefix:${_modinit_prefix}")
   if("${CMAKE_C_COMPILER_ID}" STREQUAL "MSVC")
     set_target_properties(${_target} PROPERTIES LINK_FLAGS 
         "/EXPORT:${_modinit_prefix}${_target}"
